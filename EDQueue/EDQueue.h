@@ -16,12 +16,6 @@ typedef NS_ENUM(NSInteger, EDQueueResult) {
 
 typedef void (^EDQueueCompletionBlock)(EDQueueResult result);
 
-extern NSString *const EDQueueDidStart;
-extern NSString *const EDQueueDidStop;
-extern NSString *const EDQueueJobDidSucceed;
-extern NSString *const EDQueueJobDidFail;
-extern NSString *const EDQueueDidDrain;
-
 @protocol EDQueueDelegate;
 @interface EDQueue : NSObject
 
@@ -30,7 +24,6 @@ extern NSString *const EDQueueDidDrain;
 @property (nonatomic, weak) id<EDQueueDelegate> delegate;
 
 @property (nonatomic, readonly) BOOL isRunning;
-@property (nonatomic, readonly) BOOL isActive;
 @property (nonatomic) NSUInteger retryLimit;
 
 - (void)enqueueWithData:(id)data forTask:(NSString *)task;
@@ -41,6 +34,7 @@ extern NSString *const EDQueueDidDrain;
 - (BOOL)jobExistsForTask:(NSString *)task;
 - (BOOL)jobIsActiveForTask:(NSString *)task;
 - (NSDictionary *)nextJobForTask:(NSString *)task;
+- (NSArray *) getAllJobs;
 
 @end
 

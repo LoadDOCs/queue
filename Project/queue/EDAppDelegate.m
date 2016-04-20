@@ -7,7 +7,7 @@
 //
 
 #import "EDAppDelegate.h"
-#import "EDViewController.h"
+//#import "EDViewController.h"
 
 @implementation EDAppDelegate
 
@@ -16,49 +16,43 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    
-    self.viewController = [[EDViewController alloc] initWithNibName:@"EDViewController" bundle:nil];
-    self.window.rootViewController = self.viewController;
-    [self.window makeKeyAndVisible];
+//    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+//    
+//    self.viewController = [[EDViewController alloc] initWithNibName:@"EDViewController" bundle:nil];
+//    self.window.rootViewController = self.viewController;
+//    [self.window makeKeyAndVisible];
     return YES;
 }
 
 //
 
-- (void)applicationDidBecomeActive:(UIApplication *)application
-{
-    [[EDQueue sharedInstance] setDelegate:self];
-    [[EDQueue sharedInstance] start];
-}
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {
-    [[EDQueue sharedInstance] stop];
 }
 
-- (void)queue:(EDQueue *)queue processJob:(NSDictionary *)job completion:(void (^)(EDQueueResult))block
-{
-    sleep(1);
-    
-    @try {
-        if ([[job objectForKey:@"task"] isEqualToString:@"success"]) {
-            block(EDQueueResultSuccess);
-        } else if ([[job objectForKey:@"task"] isEqualToString:@"fail"]) {
-            block(EDQueueResultFail);
-        } else {
-            block(EDQueueResultCritical);
-        }
-    }
-    @catch (NSException *exception) {
-        block(EDQueueResultCritical);
-    }
-}
+//- (void)queue:(EDQueue *)queue processJob:(NSDictionary *)job completion:(void (^)(EDQueueResult))block
+//{
+//    sleep(1);
+//    
+//    @try {
+//        if ([[job objectForKey:@"task"] isEqualToString:@"success"]) {
+//            block(EDQueueResultSuccess);
+//        } else if ([[job objectForKey:@"task"] isEqualToString:@"fail"]) {
+//            block(EDQueueResultFail);
+//        } else {
+//            block(EDQueueResultCritical);
+//        }
+//    }
+//    @catch (NSException *exception) {
+//        block(EDQueueResultCritical);
+//    }
+//}
 
 //- (EDQueueResult)queue:(EDQueue *)queue processJob:(NSDictionary *)job
 //{
 //    sleep(1);
-//    
+//
 //    @try {
 //        if ([[job objectForKey:@"task"] isEqualToString:@"success"]) {
 //            return EDQueueResultSuccess;
@@ -69,7 +63,7 @@
 //    @catch (NSException *exception) {
 //        return EDQueueResultCritical;
 //    }
-//    
+//
 //    return EDQueueResultCritical;
 //}
 
@@ -77,7 +71,7 @@
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
+    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
 }
 
